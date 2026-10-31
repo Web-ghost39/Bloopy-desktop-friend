@@ -1,7 +1,11 @@
 extends Node2D
 
 var speed = 300
-var direction = Vector2(1,0)
+var mouse= DisplayServer.mouse_get_position() 
+
+var window = DisplayServer.window_get_position()
+var pet = Vector2(DisplayServer.window_get_position()) + Vector2(200,200)
+
 var screen_size= Vector2()
 var window_size= Vector2(200,200)
 var idle_timer = 0.0
@@ -9,8 +13,11 @@ var is_idling = false
 var is_dragging = false
 var drag_offset = Vector2()
 
+
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var area = $Area2D
+
+
 
 func maybe_idle():
 	if randf() < 0.3:
@@ -23,6 +30,9 @@ func maybe_idle():
 			
 			
 func _on_area_input(_viewport, event, _shape_idx):
+	
+		
+	
 	if event is  InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			is_dragging = true
@@ -31,19 +41,33 @@ func _on_area_input(_viewport, event, _shape_idx):
 			drag_offset = mouse_pos - win_pos
 		else:
 			is_dragging = false
+	if event is  InputEventMouseButton and event.pressed and event.double_click:
+		animated_sprite.play("Idle")
+		$AudioStreamPlayer.play()
+		speed= 0
+		$Label.visible = true
+		await get_tree().create_timer(4.0).timeout
+		animated_sprite.play("Walk")
+		speed = 300
+		$Label.visible = false
 
 func _ready():
 	screen_size = Vector2(DisplayServer.screen_get_size())
 	animated_sprite.play("Walk")
 	area.input_event.connect(_on_area_input)
+	$Area2D.mouse_entered.connect(func(): $AnimatedSprite2D.scale= Vector2(2.2,2.2) )
+	$Area2D.mouse_exited.connect(func(): $AnimatedSprite2D.scale= Vector2(2,2))
 
 func _physics_process(delta:float) -> void:
+	
+	
 	if is_dragging:
 		var mouse_pos= Vector2(DisplayServer.mouse_get_position())
 		var new_win_pos= mouse_pos - drag_offset 
 		DisplayServer.window_set_position(Vector2i(new_win_pos))
 		return
-	
+	var direction = (Vector2(DisplayServer.mouse_get_position()) - pet).normalized()
+	$AnimatedSprite2D.flip_h = DisplayServer.mouse_get_position().x < DisplayServer.window_get_position().x + 100
 	if is_idling:
 		idle_timer -= delta
 		if idle_timer <= 0:
@@ -64,4 +88,3 @@ func _physics_process(delta:float) -> void:
 	if window_position.y <= 0 or window_position.y >= screen_size.y - window_size.y:
 		direction.y *= -1
 		maybe_idle()
-	

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dvhw6e71o5pfj" path="res://spritesheet.png" id="1_035b3"]
 [ext_resource type="Script" uid="uid://cbfrdpn6qopwv" path="res://petscene.gd" id="1_dr2au"]
+[ext_resource type="AudioStream" uid="uid://cwmm00rifdnvn" path="res://BloopyHello.wav" id="3_4ept2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dr2au"]
 atlas = ExtResource("1_035b3")
@@ -89,3 +90,16 @@ animation = &"Walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1752317527]
 position = Vector2(117, 99)
 shape = SubResource("RectangleShape2D_yy6hl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1479831612]
+stream = ExtResource("3_4ept2")
+
+[node name="Label" type="Label" parent="." unique_id=60705380]
+visible = false
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 88.0
+offset_bottom = 41.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 30
+text = "Hello!"
