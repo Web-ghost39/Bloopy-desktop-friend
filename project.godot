@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Desktop friend"
+run/main_scene="uid://tr5nlwfghm4x"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

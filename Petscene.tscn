@@ -1,9 +1,93 @@
 [gd_scene format=3 uid="uid://tr5nlwfghm4x"]
 
+[ext_resource type="Texture2D" uid="uid://dvhw6e71o5pfj" path="res://spritesheet.png" id="1_035b3"]
+[ext_resource type="Script" uid="uid://cbfrdpn6qopwv" path="res://petscene.gd" id="1_dr2au"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr2au"]
+atlas = ExtResource("1_035b3")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ept2"]
+atlas = ExtResource("1_035b3")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msixw"]
+atlas = ExtResource("1_035b3")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxw2s"]
+atlas = ExtResource("1_035b3")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdj10"]
+atlas = ExtResource("1_035b3")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdx7t"]
+atlas = ExtResource("1_035b3")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edo62"]
+atlas = ExtResource("1_035b3")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udxq0"]
+atlas = ExtResource("1_035b3")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eksuf"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_dr2au")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_4ept2")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msixw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxw2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdj10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdx7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edo62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udxq0")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy6hl"]
+size = Vector2(159, 163.75)
+
 [node name="Node2D" type="Node2D" unique_id=220160182]
+script = ExtResource("1_dr2au")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=791418531]
+position = Vector2(99.99999, 102.37501)
+scale = Vector2(1.9599998, 1.9925)
+sprite_frames = SubResource("SpriteFrames_eksuf")
+animation = &"Walk"
+autoplay = "Walk"
+frame_progress = 0.4336788
 
 [node name="Area2D" type="Area2D" parent="." unique_id=489559003]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1752317527]
+position = Vector2(117, 99)
+shape = SubResource("RectangleShape2D_yy6hl")
