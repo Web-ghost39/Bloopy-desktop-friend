@@ -88,7 +88,7 @@ animation = &"Walk"
 [node name="Area2D" type="Area2D" parent="." unique_id=489559003]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1752317527]
-position = Vector2(117, 99)
+position = Vector2(106, 100)
 shape = SubResource("RectangleShape2D_yy6hl")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1479831612]
@@ -103,3 +103,11 @@ offset_bottom = 41.0
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/font_size = 30
 text = "Hello!"
+
+[node name="Timelabel" type="Label" parent="." unique_id=1250861652]
+visible = false
+offset_right = 121.0
+offset_bottom = 28.0
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 20
+text = "good morning!"

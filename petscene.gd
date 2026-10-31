@@ -12,10 +12,12 @@ var idle_timer = 0.0
 var is_idling = false 
 var is_dragging = false
 var drag_offset = Vector2()
-
+var time= Time.get_time_dict_from_system()
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var area = $Area2D
+
+
 
 
 
@@ -50,6 +52,7 @@ func _on_area_input(_viewport, event, _shape_idx):
 		animated_sprite.play("Walk")
 		speed = 300
 		$Label.visible = false
+		
 
 func _ready():
 	screen_size = Vector2(DisplayServer.screen_get_size())
@@ -88,3 +91,15 @@ func _physics_process(delta:float) -> void:
 	if window_position.y <= 0 or window_position.y >= screen_size.y - window_size.y:
 		direction.y *= -1
 		maybe_idle()
+		
+	if Input.is_action_just_pressed("Space"):
+			$AudioStreamPlayer.play()
+			$Timelabel.visible= true
+			if time.hour <12: 
+				$Timelabel.text= "Good morning!"
+				await get_tree().create_timer(4.0).timeout
+				$Timelabel.visible = false
+			else:
+				$Timelabel.text = "Good evening!"
+				await get_tree().create_timer(4.0).timeout
+				$Timelabel.visible = false
