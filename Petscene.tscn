@@ -69,7 +69,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Walk",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yy6hl"]
@@ -83,8 +83,6 @@ position = Vector2(99.99999, 102.37501)
 scale = Vector2(1.9599998, 1.9925)
 sprite_frames = SubResource("SpriteFrames_eksuf")
 animation = &"Walk"
-autoplay = "Walk"
-frame_progress = 0.4336788
 
 [node name="Area2D" type="Area2D" parent="." unique_id=489559003]
 
